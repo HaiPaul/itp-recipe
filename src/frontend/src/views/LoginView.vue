@@ -14,6 +14,9 @@
                     <button type="submit" class="btn btn-primary" v-on:click="submit">Login</button>
                 </div>
             </form>
+            <div class="d-flex justify-content-center mt-3">
+                <button class="btn btn-secondary" v-on:click="microsoftLogin">Login with Microsoft</button>
+            </div>
         </div>
     </div>
 
@@ -32,6 +35,10 @@ const auth = useAuthStore();
 
 const submit = async () => {
     await auth.login(form.value);
+}
+
+const microsoftLogin = () => {
+    window.location.href = 'http://localhost:5001/api/auth/login';
 }
 
 onMounted(() => {
