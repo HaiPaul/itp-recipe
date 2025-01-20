@@ -1,14 +1,16 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api import user, auth, me
+from api import user, auth, microsoft_oauth, recipes#, ingredients
 from database.config import engine, database, Base
 
 
 app = FastAPI()
 app.include_router(auth.router, prefix="/api")
 app.include_router(user.router, prefix="/api")
-app.include_router(me.router, prefix="/api")
+app.include_router(microsoft_oauth.router, prefix="/api")
+app.include_router(recipes.router, prefix="/api")
+#app.include_router(ingredients.router, prefix="/api")
 
 origins = [
     "http://localhost:5173",

@@ -20,6 +20,12 @@ class UserCRUD:
         result = await self.db_session.execute(stmt)
         user = result.scalars().first()
         return user
+    
+    async def get_user_by_id(self, user_id: int):
+        stmt = select(UserModels).where(UserModels.id == user_id)
+        result = await self.db_session.execute(stmt)
+        user = result.scalars().first()
+        return user
 
     async def get_users(self) -> List[user_schema.Base]:
         stmt = select(UserModels)
@@ -42,15 +48,6 @@ class UserCRUD:
         db_user.last_login = datetime.utcnow()
         await self.db_session.refresh(db_user)
         return db_user
-
-    async def update_birthday(self, username: str, birthday: datetime):
-        stmt = (
-            update(UserModels)
-            .where(UserModels.username == username)
-            .values(birthday=birthday)
-        )
-        stmt.execution_options(synchronize_session="fetch")
-        await self.db_session.execute(stmt)
 
     async def update_password(self, username: str, password: str):
         stmt = (

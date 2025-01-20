@@ -6,8 +6,8 @@ from pydantic import BaseModel
 
 
 class Base(BaseModel):
+    id: int
     username: str
-    birthday: date
 
 
 class Register(Base):
@@ -16,7 +16,3 @@ class Register(Base):
 
 class Password(BaseModel):
     password: str
-
-
-class Birthday(BaseModel):
-    birthday: date
