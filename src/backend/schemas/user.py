@@ -1,12 +1,13 @@
 from datetime import date
 
+from typing import Optional
+
 from pydantic import BaseModel
 
 # User Schema
 
 
 class Base(BaseModel):
-    id: int
     username: str
 
 
@@ -16,3 +17,11 @@ class Register(Base):
 
 class Password(BaseModel):
     password: str
+
+class User(Base):
+    id: int
+    create_time: Optional[date]
+    last_login: Optional[date]
+
+    class Config:
+        orm_mode = True

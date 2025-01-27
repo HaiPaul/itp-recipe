@@ -10,10 +10,6 @@
                     <label for="passwordField">Password</label>
                     <input v-model="form.password" type="password" class="form-control" id="passwordField">
                 </div>
-                <div class="form-group">
-                    <label for="birthdayField">Birthday </label>
-                    <input v-model="form.birthday" type="date" class="form-control" id="birthdayField">
-                </div>
                 <div class=" d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary" v-on:click="submit">Register</button>
                 </div>
@@ -29,7 +25,6 @@ import { registerUser } from '../store/user';
 const form = ref({
     username: '',
     password: '',
-    birthday: '',
 });
 
 const submit = async () => {

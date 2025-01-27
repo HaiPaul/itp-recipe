@@ -37,7 +37,6 @@ class UserCRUD:
         db_user = UserModels(
             username=user.username,
             password=get_password_hash(user.password),
-            birthday=user.birthday,
         )
         self.db_session.add(db_user)
         await self.db_session.commit()
