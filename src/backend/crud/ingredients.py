@@ -5,6 +5,7 @@ from typing import List
 from models.recipes import Ingredient, Recipe
 import schemas.recipes as ingredient_schema
 
+
 class ingredientCRUD:
     db_session = None
 
@@ -23,14 +24,20 @@ class ingredientCRUD:
         ingredients = result.scalars().all()
         return ingredients
 
-    async def create_ingredient(self, ingredient: ingredient_schema.IngredientCreate) -> ingredient_schema.ingredientBase:
+    async def create_ingredient(
+        self, ingredient: ingredient_schema.IngredientCreate
+    ) -> ingredient_schema.ingredientBase:
         db_ingredient = Ingredient(
             name=ingredient.name,
             quantity=ingredient.quantity,
             recipes=[
-                Recipe(title=recipe.title, description=recipe.description, instructions=recipe.instructions)
+                Recipe(
+                    title=recipe.title,
+                    description=recipe.description,
+                    instructions=recipe.instructions,
+                )
                 for recipe in ingredient.recipes
-            ]
+            ],
         )
         self.db_session.add(db_ingredient)
         await self.db_session.commit()
@@ -38,9 +45,7 @@ class ingredientCRUD:
 
     async def update_quantity(self, name: str, quantity: str):
         stmt = (
-            update(Ingredient)
-            .where(Ingredient.name == name)
-            .values(quantity=quantity)
+            update(Ingredient).where(Ingredient.name == name).values(quantity=quantity)
         )
         stmt.execution_options(synchronize_session="fetch")
         await self.db_session.execute(stmt)

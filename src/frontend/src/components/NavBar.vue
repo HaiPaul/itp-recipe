@@ -4,7 +4,7 @@
         <div class="container mx-auto p-3">
           <div class="flex justify-between items-center">
             <!-- Logo -->
-            <router-link class="text-4xl font-bold" to="/">Demo</router-link>
+            <router-link class="text-4xl font-bold" to="/">ITP-Recipe</router-link>
   
             <!-- Mobile Menu Button -->
             <button @click="isMenuOpen = !isMenuOpen" class="md:hidden text-white focus:outline-none">
