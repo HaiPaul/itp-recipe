@@ -22,7 +22,7 @@ class RecipeCRUD:
         return recipe
 
     async def get_recipes_by_title(self, title: str) -> List[recipe_schema.Recipe]:
-        stmt = select(Recipe).where(Recipe.title.like(title)).options(joinedload(Recipe.ingredients))
+        stmt = select(Recipe).where(Recipe.title.ilike(title)).options(joinedload(Recipe.ingredients))
         result = await self.db_session.execute(stmt)
         recipes = result.scalars().unique().all()
         return recipes
@@ -77,7 +77,7 @@ class RecipeCRUD:
     async def update_description(self, title: str, description: str):
         stmt = (
             update(Recipe)
-            .where(Recipe.title.like(title))
+            .where(Recipe.title.ilike(title))
             .values(description=description)
         )
         stmt.execution_options(synchronize_session="fetch")
@@ -86,7 +86,7 @@ class RecipeCRUD:
     async def update_instructions(self, title: str, instructions: str):
         stmt = (
             update(Recipe)
-            .where(Recipe.title.like(title))
+            .where(Recipe.title.ilike(title))
             .values(instructions=instructions)
         )
         stmt.execution_options(synchronize_session="fetch")
