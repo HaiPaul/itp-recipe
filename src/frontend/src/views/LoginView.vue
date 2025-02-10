@@ -45,7 +45,7 @@ const submit = async () => {
 
 
 const microsoftLogin = () => {
-    window.location.href = 'http://localhost:5001/api/auth/login';
+    window.location.href = 'http://localhost:8002/api/auth/login';
 }
 
 onMounted(() => {
