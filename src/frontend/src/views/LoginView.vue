@@ -25,17 +25,24 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useAuthStore } from '../store/auth';
+import axios from 'axios';
 
 const form = ref({
     username: '',
     password: ''
 });
 
-const auth = useAuthStore();
-
 const submit = async () => {
-    await auth.login(form.value);
-}
+    axios.post("http://127.0.0.1:5001/api/auth/login", new URLSearchParams({
+      username: form.username,
+      password: form.password
+    }))
+    .then(res => {
+        alert("Login sucessful!")
+        localStorage.setItem("token", res.data.access_token);
+    })
+};
+
 
 const microsoftLogin = () => {
     window.location.href = 'http://localhost:5001/api/auth/login';
