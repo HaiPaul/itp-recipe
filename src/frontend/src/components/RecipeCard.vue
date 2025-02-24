@@ -1,8 +1,8 @@
 <template>
-    <div class="flex justify-center items-center  bg-neutral-900">
+    <div class="flex justify-center items-center bg-neutral-900 w-full">
       <div 
         @click="goToDetailPage"
-        class="w-full max-w-md bg-neutral-800 rounded-lg shadow-md overflow-hidden cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105"
+        class="w-full max-w-3xl bg-neutral-800 rounded-lg shadow-md overflow-hidden cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105"
       >
         <div class="p-4">
           <div class="text-sm text-neutral-600 text-right">
@@ -35,3 +35,4 @@
     router.push({ name: 'RecipeDetail', params: { id: props.recipe.id } });
   };
   </script>
+

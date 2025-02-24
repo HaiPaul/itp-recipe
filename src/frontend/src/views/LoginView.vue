@@ -32,11 +32,10 @@ const form = ref({
     password: ''
 });
 
-const submit = async () => {
-    axios.post("http://127.0.0.1:5001/api/auth/login", new URLSearchParams({
-      username: form.username,
-      password: form.password
-    }))
+async function submit() {
+    let data = {username: form.value.username, password: form.value.password}
+    console.log(data)
+    axios.post("http://127.0.0.1:8002/api/auth/login", data)
     .then(res => {
         alert("Login sucessful!")
         localStorage.setItem("token", res.data.access_token);

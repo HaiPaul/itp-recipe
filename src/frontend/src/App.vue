@@ -6,7 +6,7 @@ import Loading from "./components/Loading.vue";
 </script>
 
 <template>
-  <div id="app">
+  <div id="app" >
     <NavBar />
     <router-view />
     <Loading />
