@@ -22,7 +22,7 @@ app = FastAPI(
     },
 )
 app.include_router(auth.router, prefix="/api")
-app.include_router(user.router, prefix="/api", dependencies=[Security(azure_scheme, scopes=['user_impersonation'])])
+app.include_router(user.router, prefix="/api")
 app.include_router(recipes.router, prefix="/api", dependencies=[Security(azure_scheme, scopes=['user_impersonation'])])
 #app.include_router(ingredients.router, prefix="/api")
 
