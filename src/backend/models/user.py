@@ -19,4 +19,4 @@ class UserModels(Base):
         self.password = password
 
     def __repr__(self) -> str:
-        return f"<UserModels(username={self.username}, password={self.password})>"
+        return f"<UserModels(username={self.username}, password={self.password}, id={self.id})>"

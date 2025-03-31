@@ -31,11 +31,12 @@ async def get_user(user_id: int, db: UserCRUD = Depends(get_user_crud)):
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
-@router.get("/name/{username}", response_model=user_schema.Base)
+@router.get("/name/{username}", response_model=user_schema.UserID)
 async def get_user_by_username(
     username: str, db: UserCRUD = Depends(get_user_crud)
 ):
     user = await db.get_user_by_username(username=username)
+    print(user)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user

@@ -18,6 +18,9 @@ class Register(Base):
 class Password(BaseModel):
     password: str
 
+class UserID(Base):
+    id: int
+
 class User(Base):
     id: int
     create_time: Optional[date]
