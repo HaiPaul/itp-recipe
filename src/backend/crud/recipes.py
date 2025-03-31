@@ -54,7 +54,8 @@ class RecipeCRUD:
             ingredients=[
                 Ingredient(name=ingredient.name, quantity=ingredient.quantity)
                 for ingredient in recipe.ingredients
-            ]
+            ],
+            created_by=recipe.created_by
         )
         self.db_session.add(db_recipe)
         await self.db_session.commit()
@@ -67,7 +68,8 @@ class RecipeCRUD:
             .values(
                 title=recipe.title,
                 description=recipe.description,
-                instructions=recipe.instructions
+                instructions=recipe.instructions,
+                created_by=recipe.created_by,
             )
         )
         stmt.execution_options(synchronize_session="fetch")

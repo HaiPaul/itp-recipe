@@ -21,11 +21,12 @@ class RecipeBase(BaseModel):
 
 class RecipeCreate(RecipeBase):
     ingredients: List[IngredientCreate]
+    created_by: int
 
 class Recipe(RecipeBase):
     id: int
     ingredients: List[Ingredient]
-    created_by: Optional[int] = None
+    created_by: int
 
     class Config:
         orm_mode: True
