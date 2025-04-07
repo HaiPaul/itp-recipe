@@ -6,6 +6,9 @@ import RegisterView from "../views/RegisterView.vue";
 import LogoutView from "../views/LogoutView.vue";
 import RefreshView from "../views/RefreshView.vue";
 import BrowseView from "../views/BrowseView.vue";
+import CreateRecipe from "../views/CreateRecipe.vue";
+import RecipeDetail from "../views/RecipeDetail.vue";
+import MyRecipes from "../views/MyRecipes.vue";
 import { useAuthStore } from "../store/auth";
 
 const routes = [
@@ -13,6 +16,27 @@ const routes = [
     path: "/",
     name: "Home",
     component: HomeView,
+  },
+  {
+    path: "/recipe/:id",
+    name: "RecipeDetail",
+    component: RecipeDetail,
+    props: true,
+  },
+  {
+    path: "/create",
+    name: "Create",
+    component: CreateRecipe,
+  },
+  {
+    path: "/create",
+    name: "Create",
+    component: CreateRecipe,
+  },
+  {
+    path: "/myRecipes",
+    name: "MyRecipes",
+    component: BrowseView,
   },
   {
     path: "/browse",

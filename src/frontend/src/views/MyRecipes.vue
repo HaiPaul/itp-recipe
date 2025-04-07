@@ -14,7 +14,6 @@
 </template>
 
 <script setup>
-import { apiGetMyself } from "../api/me";
 import RecipeCard from "../components/RecipeCard.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
@@ -23,11 +22,14 @@ const recipes = ref([]);
 
 const getAllRecipes = async () => {
   let token = localStorage.getItem("token");
-  const response = await axios.get("http://127.0.0.1:8002/api/recipes", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await axios.get(
+    "http://127.0.0.1:8002/api/recipes/user/" + localStorage.getItem("user_id"),
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   recipes.value = response.data;
 };
 

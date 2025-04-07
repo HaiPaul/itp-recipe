@@ -1,12 +1,14 @@
-
-  
 <script setup>
-import { onMounted } from 'vue';
-import { useAuthStore } from '../store/auth';
+import { onMounted } from "vue";
+import axios from "axios";
 
-const auth = useAuthStore();
 onMounted(() => {
-    auth.logout();
-});
+  axios.post("http://127.0.0.1:8002/api/auth/logout");
 
+  alert("Logout sucessful!");
+  console.log("Logout sucessful!");
+  localStorage.removeItem("token");
+  localStorage.removeItem("user_id");
+  localStorage.removeItem("username");
+});
 </script>
